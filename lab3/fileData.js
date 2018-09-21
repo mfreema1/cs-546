@@ -1,43 +1,36 @@
+const createMetrics = require('./textMetrics.js');
 const bluebird = require('bluebird');
 const Promise = bluebird.Promise;
 const fs = Promise.promisifyAll(require('fs'));
 
 const _checkPathValidity = path => {
-    if(!path)
-        Throw('Need a valid file path');
+    if(!path || typeof path != 'string')
+        throw('Need a valid file path');
 };
 
 const getFileAsString = async (path) => {
     _checkPathValidity(path);
-    await fs.readFileAsync(path, (err, data) => {
-        if(err)
-            Throw(err);
-        else
-            return data;
-    });
+    return await fs.readFileAsync(path, 'utf-8');
 };
 
 const getFileAsJSON = async (path) => {
     _checkPathValidity(path);
-    try{
-        return JSON.parse(await getFileAsString(path));
-    }
-    catch(e) {
-        Throw('File is not valid JSON');
-    }
+    return createMetrics(await getFileAsString(path));
 };
 
 const saveStringToFile = async (path, text) => {
     _checkPathValidity(path);
-    await fs.writeFileAsync(path, text, (err, data) => {
-        if(err)
-            Throw(err);
-        else
-            return data;
-    });
+    await fs.writeFileAsync(path, Buffer.from(text));
 };
 
 const saveJSONToFile = async (path, obj) => {
     _checkPathValidity(path);
-    return await saveStringToFile(JSON.stringify(obj));
+    await saveStringToFile(path, JSON.stringify(obj));
+};
+
+module.exports = {
+    getFileAsString: getFileAsString,
+    getFileAsJSON: getFileAsJSON,
+    saveStringToFile: saveStringToFile,
+    saveJSONToFile: saveJSONToFile
 };
