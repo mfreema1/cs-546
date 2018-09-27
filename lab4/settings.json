@@ -1,6 +1,6 @@
 {
     "mongoConfig": {
       "serverUrl": "mongodb://localhost:27017/",
-      "database": "todoList"
+      "database": "Freeman_Mark_lab4" //format specified by prof
     }
   }
