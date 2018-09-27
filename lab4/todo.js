@@ -21,14 +21,14 @@ const createTask = async (title, description) => {
 
     const newId = insertInfo.insertedId;
 
-    const todoItem = await this.getTask(newId);
+    const todoItem = await getTask(newId);
     return todoItem;
 };
 
 const getAllTasks = async () => {
     const todoItemCollection = await todoItems();
-    const todoItems = await todoItemCollection.find({}).toArray();
-    return todoItems;
+    const items = await todoItemCollection.find({}).toArray();
+    return items;
 };
 
 const getTask = async (id) => {
@@ -44,9 +44,9 @@ const completeTask = async (taskId) => {
     if(!taskId) throw "You must provide a valid id to complete."
 
     const todoItemCollection = await todoItems();
-    const updateInfo = await todoItemCollection.updateOne({ _id: taskId }, { $set: { completed: true }});
+    const updateInfo = await todoItemCollection.updateOne({ _id: taskId }, { $set: { completed: true, completedAt: new Date().getTime() }});
     if(updateInfo.modifiedCount === 0) throw "Could not complete task.";
-    return await this.getTask(taskId);
+    return await getTask(taskId);
 };
 
 const removeTask = async (id) => {
@@ -56,3 +56,11 @@ const removeTask = async (id) => {
     const deleteInfo = await todoItemCollection.deleteOne({ _id: id });
     if(deleteInfo.deletedCount === 0) throw "Could not delete task.";
 };
+
+module.exports = {
+    createTask: createTask,
+    getAllTasks: getAllTasks,
+    getTask: getTask,
+    completeTask: completeTask,
+    removeTask: removeTask
+}
