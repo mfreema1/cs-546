@@ -1,0 +1,32 @@
+.success {
+    color: #28a745;
+}
+
+.failure {
+    color: #dc3545;
+}
+
+.error {
+    color: #8b0000;
+    /* ooh, what a moody red */
+}
+
+#text-to-test {
+    width: 50%;
+}
+
+.content {
+    height: 100vh;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    margin: 10%;
+}
+
+p {
+    font-size: 14pt;
+}
+
+h1 {
+    font-size: 30pt;
+}

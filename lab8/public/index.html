@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Best Palindrome Checker in the World!</title>
+    <link rel="stylesheet" href="/site.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <div class="content">
+        <h1>The Best Palindrome Checker in the World!</h1>
+        <main>
+            <p>
+                A palindrome is a word, phrase, or sequence that reads the same backward as forward.  For example, madam, racecar, and tacocat are all palindromes.  This site aims to enlighten people as to whether or not certain words or phrases are palindromes.
+            </p>
+
+            <form method="POST" action="/result">
+                <div class="form-group">
+                    <label for="text-to-test">Enter a word or phrase:</label>
+                    <input class="form-control" id="text-to-test" name="text-to-test" type="text">
+                </div>
+
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-const isPalindrome = (params) => {
+const checkPalindrome = async (params) => {
     let str = params['text-to-test'];
 
     if(!str) throw "You must provide some valid text for your string";
@@ -12,5 +12,5 @@ const _cleanInput = (str) => {
 };
 
 module.exports = {
-    isPalindrome: isPalindrome
+    checkPalindrome: checkPalindrome
 };
