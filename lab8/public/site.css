@@ -1,3 +1,19 @@
+p {
+    font-size: 14pt;
+}
+
+h1 {
+    font-size: 30pt;
+}
+
+#text-to-test {
+    width: 50%;
+}
+
+.italic {
+    font-style: italic;
+}
+
 .success {
     color: #28a745;
 }
@@ -11,22 +27,9 @@
     /* ooh, what a moody red */
 }
 
-#text-to-test {
-    width: 50%;
-}
-
 .content {
-    height: 100vh;
     display: flex;
     align-content: center;
     flex-direction: column;
     margin: 10%;
-}
-
-p {
-    font-size: 14pt;
-}
-
-h1 {
-    font-size: 30pt;
 }
