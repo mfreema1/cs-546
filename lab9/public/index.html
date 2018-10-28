@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Best Palindrome Checker in the World!</title>
+    <link rel="stylesheet" href="/site.css">
+</head>
+<body>
+    <h1>The Best Palindrome Checker in the World!</h1>
+
+    <form action="">
+        <div class="form-group">
+            <label for="phrase">Enter a phrase to check:</label>
+            <textarea name="phrase" id="phrase" cols="30" rows="10"></textarea>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <ol id="attempts"></ol>
+
+    <footer>
+        Name: Mark Freeman
+        CWID: 10416298
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="/palindrome.js"></script>
+    <script>
+        $(document).ready(() => {
+            $(document.querySelector('form')).on("submit", (e) => {
+                e.preventDefault();
+                const phrase = $('#phrase').val();
+                checkPalindrome(phrase).then((isPalindrome) => {
+                    const className = isPalindrome ? 'is-palindrome' : 'not-palindrome';
+                    $('#attempts').append($('<li>', {class: className, text: phrase}));
+                }).catch((err) => {
+                    alert(err);
+                });            
+            });
+        });
+    </script>
+</body>
+</html>

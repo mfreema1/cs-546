@@ -1,0 +1,11 @@
+.form-group > * {
+    display: block;
+}
+
+.is-palindrome {
+    color: #0000FF;
+}
+
+.not-palindrome {
+    color: #FF0000;
+}
