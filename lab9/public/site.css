@@ -1,3 +1,7 @@
+#no-tom {
+    font-style: italic;
+}
+
 .form-group > * {
     display: block;
 }
@@ -8,4 +12,29 @@
 
 .not-palindrome {
     color: #FF0000;
+}
+
+footer > p {
+    font-size: 10pt;
+}
+
+ol > li, label {
+    font-weight: bold;
+}
+
+label {
+    font-style: oblique;
+}
+
+body {
+    background-color: #00FF00;
+}
+
+h1 {
+    color: #FFFF00;
+}
+
+button {
+    background-color: #000000;
+    color: #FFFFFF;
 }
