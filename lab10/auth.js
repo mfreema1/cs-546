@@ -2,49 +2,38 @@ const bcrypt = require("bcrypt");
 const users = require("./users");
 const saltRounds = 16;
 
-const checkSession = sessionId => {
-  for (let i in users) {
-    if (users[i]._id === sessionId) return true;
-  }
+const _getIndex = (field, value) => {
+  for (let i in users) if (users[i][field] === value) return i;
+};
+
+const validSession = sessionId => {
+  if (_getIndex("_id", sessionId)) return true;
   return false;
 };
 
-const getUserAtIndex = index => {
-  return users[index];
+const getPassword = usn => {
+  const i = _getIndex("username", usn);
+  if (i) return users[i].hashedPassword;
 };
 
-const getUserIndex = username => {
-  for (let i in users) {
-    if (users[i].username === username) return i;
-  }
-  return null;
-};
-
-const setSession = (index, sessionId) => {
-  users[index]._id = sessionId;
+const setSession = (usn, sessionId) => {
+  const i = _getIndex("username", usn);
+  if (i) users[i]._id = sessionId;
 };
 
 const getUserFromSession = sessionId => {
-  for (let i in users) {
-    if (users[i]._id === sessionId) return users[i];
-  }
+  const i = _getIndex("_id", sessionId);
+  if (i) return users[i];
 };
 
-//for some reason this doesn't work, and I can't seem to figure out why...
 const passwordsMatch = (requestPassword, userPassword) => {
-  console.log(requestPassword);
-  const hash = bcrypt.hashSync(requestPassword, saltRounds);
-
-  console.log("Hash: " + hash);
-  console.log("User: " + userPassword);
-  return bcrypt.compareSync(userPassword, hash);
+  return bcrypt.compareSync(requestPassword, userPassword);
 };
 
 module.exports = {
-  checkSession: checkSession,
-  getUserIndex: getUserIndex,
-  getUserAtIndex: getUserAtIndex,
   getUserFromSession: getUserFromSession,
+  getPassword: getPassword,
   passwordsMatch: passwordsMatch,
-  setSession: setSession
+  setSession: setSession,
+  validSession: validSession
 };
