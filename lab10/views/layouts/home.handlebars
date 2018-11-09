@@ -16,13 +16,8 @@
 
         <button type="submit">Log In</button>
     </form>
-    <p id="failure">Sorry, your username or password were incorrect</p>
-<script>
-    const params = new URLSearchParams(document.location.search.substring(1));
-    const qs = params.get('failure');
-    const failureTag = document.getElementById('failure');
-    if(qs)
-        failureTag.style.display = 'block';
-</script>
+    {{#if error}}
+        <p>Your username or password did not match.  Please try again</p>
+    {{/if}}
 </body>
 </html>
